@@ -6,7 +6,7 @@ function fetchData() {
 }
 async function addData(post) {
   await db('resources').insert(post);
-  return db('resources').where('resource_name', post.resource_name);
+  return post;
 }
 
 

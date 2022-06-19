@@ -17,8 +17,8 @@ router.post('/', (req, res, next) => {
     return;
   }
   Project.addData(req.body).then(result => {
-    res.status(201).json(result);
-  })
+    res.status(201).json({...result, project_completed: req.body.project_completed});
+  }).next(err => next(err));
 })
 
 
