@@ -6,6 +6,13 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
 Tasks.fetchData().then(result => {
+  for (let i = 0; i < result.length; i++) {
+    if (result[i].task_completed === 1) {
+     result[i].task_completed = true;
+    } else {
+     result[i].task_completed = false;
+    }
+  }
   res.status(200).json(result);
 }).catch(err => next(err));
 });
@@ -21,6 +28,7 @@ router.post('/', (req, res, next) => {
     return;
   }
   Tasks.addData(req.body).then(result => {
+    result.task_completed = result.task_completed ? true : false;
     res.status(201).json(result);
   }).catch(err => next(err));
 })
