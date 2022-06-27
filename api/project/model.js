@@ -6,7 +6,7 @@ function fetchData() {
 }
 async function addData(post) {
   await db('projects').insert(post);
-  return db ('projects').where('project_name', post.project_name);
+  return db('projects').where('project_name', post.project_name);
 }
 
 module.exports = {
